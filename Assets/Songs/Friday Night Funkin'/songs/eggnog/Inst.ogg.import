@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Inst.ogg-98d0bdfa3969a05550f96f6591d7ffdc.oggstr"
+
+[deps]
+
+source_file="res://Assets/Songs/Friday Night Funkin'/songs/eggnog/Inst.ogg"
+dest_files=[ "res://.import/Inst.ogg-98d0bdfa3969a05550f96f6591d7ffdc.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,171 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Scenes/States/PlayState/Character.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Sprites/Characters/gf_sheet.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Characters/Icons/icon_gf.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "cry"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 53, 54, 55, 56, 57, 54, 55, 56, 57, 54, 55, 56, 57 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "dance-left"
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.275, 0.3, 0.325, 0.35, 0.375, 0.4, 0.425 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "dance-right"
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.325, 0.35, 0.375, 0.4, 0.425 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "down"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 29, 29, 30, 31, 32, 33 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "hey"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 61, 62, 63, 64 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "left"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 34, 35, 36, 37, 38, 39, 40 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "right"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 41, 42, 43, 44, 45, 46, 47 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "up"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 48, 49, 50, 51, 52 ]
+}
+
+[node name="Girlfriend" instance=ExtResource( 1 )]
+dancer = true
+girlfriend_position = true
+position_offset = Vector2( 0, -344 )
+icon_sheet = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+texture = ExtResource( 2 )
+hframes = 10
+vframes = 7
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "dance-left"
+anims/RESET = SubResource( 2 )
+anims/cry = SubResource( 8 )
+anims/dance-left = SubResource( 1 )
+anims/dance-right = SubResource( 3 )
+anims/down = SubResource( 5 )
+anims/hey = SubResource( 9 )
+anims/left = SubResource( 4 )
+anims/right = SubResource( 7 )
+anims/up = SubResource( 6 )

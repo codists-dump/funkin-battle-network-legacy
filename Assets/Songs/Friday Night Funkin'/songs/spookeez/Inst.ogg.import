@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Inst.ogg-f3dbbbca9ec0a1fa98600cd6510cead8.oggstr"
+
+[deps]
+
+source_file="res://Assets/Songs/Friday Night Funkin'/songs/spookeez/Inst.ogg"
+dest_files=[ "res://.import/Inst.ogg-f3dbbbca9ec0a1fa98600cd6510cead8.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

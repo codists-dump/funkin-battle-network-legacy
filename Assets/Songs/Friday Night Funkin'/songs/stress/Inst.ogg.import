@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Inst.ogg-a9ab9ed54d348c39f3c3fe3ce145cff4.oggstr"
+
+[deps]
+
+source_file="res://Assets/Songs/Friday Night Funkin'/songs/stress/Inst.ogg"
+dest_files=[ "res://.import/Inst.ogg-a9ab9ed54d348c39f3c3fe3ce145cff4.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

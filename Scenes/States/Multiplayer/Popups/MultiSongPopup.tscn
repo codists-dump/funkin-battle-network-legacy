@@ -1,0 +1,196 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Other/theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/States/Multiplayer/Lobby/multi_song_popup.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sprites/Multiplayer/search.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Multiplayer/random.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/Multiplayer/refresh.png" type="Texture" id=5]
+
+[sub_resource type="InputEventKey" id=1]
+control = true
+command = true
+scancode = 82
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
+
+[node name="MultiSongPopup" type="WindowDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -475.0
+margin_bottom = -309.0
+theme = ExtResource( 1 )
+window_title = "Pick a Song!"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="container" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="top_container" type="HBoxContainer" parent="container"]
+margin_right = 805.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+
+[node name="search_bar" type="LineEdit" parent="container/top_container"]
+margin_right = 367.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+clear_button_enabled = true
+right_icon = ExtResource( 3 )
+placeholder_text = "Search"
+
+[node name="lolserver" type="LineEdit" parent="container/top_container"]
+margin_left = 379.0
+margin_right = 747.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+placeholder_text = "lol server"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="refresh_button" type="Button" parent="container/top_container"]
+margin_left = 759.0
+margin_right = 805.0
+margin_bottom = 43.0
+icon = ExtResource( 5 )
+
+[node name="sep1" type="HSeparator" parent="container"]
+margin_top = 47.0
+margin_right = 805.0
+margin_bottom = 55.0
+
+[node name="song_tabs" type="TabContainer" parent="container"]
+margin_top = 59.0
+margin_right = 805.0
+margin_bottom = 106.0
+tab_align = 0
+
+[node name="local" type="Control" parent="container/song_tabs"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 43.0
+margin_bottom = -4.0
+
+[node name="online" type="Control" parent="container/song_tabs"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 43.0
+margin_bottom = -4.0
+
+[node name="option_container" type="HBoxContainer" parent="container"]
+margin_top = 110.0
+margin_right = 805.0
+margin_bottom = 352.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="mod_container" type="ScrollContainer" parent="container/option_container"]
+margin_right = 396.0
+margin_bottom = 242.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="container" type="VBoxContainer" parent="container/option_container/mod_container"]
+margin_right = 396.0
+margin_bottom = 242.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="song_container" type="ScrollContainer" parent="container/option_container"]
+margin_left = 408.0
+margin_right = 805.0
+margin_bottom = 242.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="container" type="VBoxContainer" parent="container/option_container/song_container"]
+margin_right = 397.0
+margin_bottom = 242.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="sep2" type="HSeparator" parent="container"]
+margin_top = 356.0
+margin_right = 805.0
+margin_bottom = 364.0
+
+[node name="bot_container" type="HBoxContainer" parent="container"]
+margin_top = 368.0
+margin_right = 805.0
+margin_bottom = 411.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="select_button" type="Button" parent="container/bot_container"]
+margin_right = 358.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Pick Nothing"
+
+[node name="random_button" type="Button" parent="container/bot_container"]
+margin_left = 370.0
+margin_right = 434.0
+margin_bottom = 43.0
+shortcut = SubResource( 2 )
+icon = ExtResource( 4 )
+
+[node name="selected_container" type="HBoxContainer" parent="container/bot_container"]
+margin_left = 446.0
+margin_right = 805.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="selected_label" type="LineEdit" parent="container/bot_container/selected_container"]
+margin_top = 1.0
+margin_right = 216.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+editable = false
+
+[node name="diff_option" type="OptionButton" parent="container/bot_container/selected_container"]
+margin_left = 228.0
+margin_right = 359.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="InfoLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -402.5
+margin_top = -16.5
+margin_right = 402.5
+margin_bottom = 16.5
+text = "Loading..."
+align = 1
+autowrap = true
+
+[connection signal="text_changed" from="container/top_container/search_bar" to="." method="_on_search_bar_text_changed"]
+[connection signal="text_changed" from="container/top_container/lolserver" to="." method="_on_lolserver_text_changed"]
+[connection signal="pressed" from="container/top_container/refresh_button" to="." method="_on_refresh_button_pressed"]
+[connection signal="tab_changed" from="container/song_tabs" to="." method="_on_TabContainer_tab_changed"]
+[connection signal="pressed" from="container/bot_container/select_button" to="." method="_on_select_button_pressed"]
+[connection signal="pressed" from="container/bot_container/random_button" to="." method="_on_random_button_pressed"]
+[connection signal="item_selected" from="container/bot_container/selected_container/diff_option" to="." method="_on_diff_option_item_selected"]

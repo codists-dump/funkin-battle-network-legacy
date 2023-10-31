@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Other/theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/States/Multiplayer/MultiState/Popups/multi_popup_game.gd" type="Script" id=2]
+
+[node name="MultiGamePopup" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Menu" type="Panel" parent="."]
+margin_left = 502.0
+margin_top = 571.0
+margin_right = 1259.0
+margin_bottom = 699.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="container" type="VBoxContainer" parent="Menu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="container" type="HBoxContainer" parent="Menu/container"]
+margin_right = 757.0
+margin_bottom = 125.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="host_container" type="VBoxContainer" parent="Menu/container/container"]
+margin_right = 372.0
+margin_bottom = 125.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="host_label" type="Label" parent="Menu/container/container/host_container"]
+margin_right = 372.0
+margin_bottom = 33.0
+text = "Host a Game"
+
+[node name="host_port" type="LineEdit" parent="Menu/container/container/host_container"]
+margin_top = 37.0
+margin_right = 372.0
+margin_bottom = 78.0
+text = "3624"
+max_length = 4
+placeholder_text = "port"
+
+[node name="host_button" type="Button" parent="Menu/container/container/host_container"]
+margin_top = 82.0
+margin_right = 372.0
+margin_bottom = 125.0
+text = "Host Server"
+
+[node name="join_container" type="VBoxContainer" parent="Menu/container/container"]
+margin_left = 384.0
+margin_right = 757.0
+margin_bottom = 125.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="join_label" type="Label" parent="Menu/container/container/join_container"]
+margin_right = 373.0
+margin_bottom = 33.0
+text = "Join a Game"
+
+[node name="join_ip" type="LineEdit" parent="Menu/container/container/join_container"]
+margin_top = 37.0
+margin_right = 373.0
+margin_bottom = 78.0
+text = "localhost"
+placeholder_text = "ip:port"
+
+[node name="join_button" type="Button" parent="Menu/container/container/join_container"]
+margin_top = 82.0
+margin_right = 373.0
+margin_bottom = 125.0
+text = "Join Server"
+
+[node name="settings_container" type="HBoxContainer" parent="Menu/container"]
+margin_top = 129.0
+margin_right = 757.0
+margin_bottom = 129.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="pressed" from="Menu/container/container/host_container/host_button" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="Menu/container/container/join_container/join_button" to="." method="_on_join_button_pressed"]

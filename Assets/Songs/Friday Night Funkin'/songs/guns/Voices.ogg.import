@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Voices.ogg-c2d15e66bbfb2d588ce92c0186d57c2e.oggstr"
+
+[deps]
+
+source_file="res://Assets/Songs/Friday Night Funkin'/songs/guns/Voices.ogg"
+dest_files=[ "res://.import/Voices.ogg-c2d15e66bbfb2d588ce92c0186d57c2e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

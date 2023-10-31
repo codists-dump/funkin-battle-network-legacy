@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Inst.ogg-ed4046f542d3d931a5796c02f6991c45.oggstr"
+
+[deps]
+
+source_file="res://Assets/Songs/Friday Night Funkin'/songs/winter-horrorland/Inst.ogg"
+dest_files=[ "res://.import/Inst.ogg-ed4046f542d3d931a5796c02f6991c45.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

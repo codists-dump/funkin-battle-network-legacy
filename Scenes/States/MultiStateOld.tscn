@@ -1,0 +1,105 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Other/theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/States/multi_state_old.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sprites/Menus/menu_bg_desat.png" type="Texture" id=3]
+
+[node name="MultiState" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="BG" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 3 )
+stretch_mode = 2
+
+[node name="panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 100.0
+margin_right = -100.0
+margin_bottom = -100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="container" type="VBoxContainer" parent="panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="Label" parent="panel/container"]
+margin_right = 1080.0
+margin_bottom = 33.0
+text = "Multiplayer"
+
+[node name="container" type="HBoxContainer" parent="panel/container"]
+margin_top = 37.0
+margin_right = 1080.0
+margin_bottom = 475.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="host_container" type="VBoxContainer" parent="panel/container/container"]
+margin_right = 534.0
+margin_bottom = 438.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="host_port" type="LineEdit" parent="panel/container/container/host_container"]
+margin_right = 534.0
+margin_bottom = 41.0
+text = "3624"
+max_length = 4
+placeholder_text = "port"
+
+[node name="host_button" type="Button" parent="panel/container/container/host_container"]
+margin_top = 45.0
+margin_right = 534.0
+margin_bottom = 88.0
+text = "host"
+
+[node name="join_container" type="VBoxContainer" parent="panel/container/container"]
+margin_left = 546.0
+margin_right = 1080.0
+margin_bottom = 438.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="join_ip" type="LineEdit" parent="panel/container/container/join_container"]
+margin_right = 534.0
+margin_bottom = 41.0
+text = "localhost"
+placeholder_text = "ip:port"
+
+[node name="join_button" type="Button" parent="panel/container/container/join_container"]
+margin_top = 45.0
+margin_right = 534.0
+margin_bottom = 88.0
+text = "join"
+
+[node name="settings_container" type="HBoxContainer" parent="panel/container"]
+margin_top = 479.0
+margin_right = 1080.0
+margin_bottom = 520.0
+
+[node name="name" type="LineEdit" parent="panel/container/settings_container"]
+margin_right = 1080.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Boyfriend"
+placeholder_text = "name"
+
+[connection signal="pressed" from="panel/container/container/host_container/host_button" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="panel/container/container/join_container/join_button" to="." method="_on_join_button_pressed"]

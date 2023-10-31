@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Inst.ogg-c303e8a6d5b1b24483122287665d30f0.oggstr"
+
+[deps]
+
+source_file="res://Assets/Songs/Friday Night Funkin'/songs/dad-battle/Inst.ogg"
+dest_files=[ "res://.import/Inst.ogg-c303e8a6d5b1b24483122287665d30f0.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

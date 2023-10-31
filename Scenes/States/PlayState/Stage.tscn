@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/States/PlayState/stage.gd" type="Script" id=1]
+
+[node name="Stage" type="Node2D"]
+script = ExtResource( 1 )
+characters_node = NodePath("Characters")
+player_position = Vector2( 1112, 640 )
+enemy_position = Vector2( 168, 640 )
+gf_position = Vector2( 640, 640 )
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 640, 360 )
+current = true
+smoothing_enabled = true
+smoothing_speed = 3.0
+
+[node name="Characters" type="Node2D" parent="."]

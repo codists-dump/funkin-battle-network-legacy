@@ -1,0 +1,212 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Scripts/States/intro_state.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Nodes/alphabet.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sprites/Menus/Title/gf_title.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Menus/Title/newgrounds_logo.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/Menus/Title/logo.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/Menus/Title/press_enter.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sounds/confirm_menu.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Assets/Sounds/hit_sound.ogg" type="AudioStream" id=8]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PressEnter:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "default"
+length = 2.05
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("PressEnter:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3, 1.35, 1.4, 1.45, 1.5, 1.55, 1.6, 1.65, 1.7, 1.75, 1.8, 1.85, 1.9, 1.95, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "pressed"
+length = 0.1
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("PressEnter:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Title/GF:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "dance_left"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Title/GF:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "dance_right"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Title/GF:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ]
+}
+
+[node name="IntroState" type="Control"]
+margin_left = 2.0
+margin_top = 1.0
+margin_right = 1282.0
+margin_bottom = 721.0
+script = ExtResource( 1 )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -2.0
+margin_top = -1.0
+margin_right = -2.0
+margin_bottom = -1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IntroText" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Alphabet" type="Control" parent="IntroText"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 185.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+align = 1
+
+[node name="NGLogo" type="Sprite" parent="IntroText"]
+visible = false
+position = Vector2( 640, 528 )
+scale = Vector2( 0.85, 0.85 )
+texture = ExtResource( 4 )
+
+[node name="Title" type="Control" parent="."]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GF" type="Sprite" parent="Title"]
+position = Vector2( 876, 359 )
+texture = ExtResource( 3 )
+hframes = 10
+vframes = 2
+
+[node name="Logo" type="Sprite" parent="Title"]
+position = Vector2( 335, 233 )
+texture = ExtResource( 5 )
+hframes = 4
+
+[node name="PressEnter" type="Sprite" parent="Title"]
+position = Vector2( 608, 619 )
+texture = ExtResource( 6 )
+hframes = 2
+vframes = 22
+frame = 2
+
+[node name="Flash" type="ColorRect" parent="Title"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -2.0
+margin_top = -1.0
+margin_right = 1278.0
+margin_bottom = 719.0
+color = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="EnterPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Title")
+autoplay = "default"
+anims/RESET = SubResource( 1 )
+anims/default = SubResource( 2 )
+anims/pressed = SubResource( 3 )
+
+[node name="GFPlayer" type="AnimationPlayer" parent="."]
+autoplay = "dance_left"
+anims/RESET = SubResource( 4 )
+anims/dance_left = SubResource( 5 )
+anims/dance_right = SubResource( 6 )
+
+[node name="PressedStream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+bus = "SFX"
+
+[node name="EggStream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -5.0
+bus = "SFX"
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

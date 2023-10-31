@@ -1,0 +1,132 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/Sprites/Menus/menu_bg_blue.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/States/Multiplayer/multi_lobby.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Other/theme.tres" type="Theme" id=3]
+
+[sub_resource type="InputEventKey" id=3]
+scancode = 83
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 3 )
+
+[sub_resource type="InputEventKey" id=4]
+scancode = 67
+
+[sub_resource type="ShortCut" id=5]
+shortcut = SubResource( 4 )
+
+[sub_resource type="InputEventKey" id=6]
+shift = true
+scancode = 16777221
+
+[sub_resource type="ShortCut" id=7]
+shortcut = SubResource( 6 )
+
+[node name="MultiLobby" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+script = ExtResource( 2 )
+
+[node name="BG" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 1 )
+stretch_mode = 2
+
+[node name="panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 100.0
+margin_right = -100.0
+margin_bottom = -100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="container" type="VBoxContainer" parent="panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lobby_name" type="Label" parent="panel/container"]
+margin_right = 1080.0
+margin_bottom = 33.0
+text = "Lobby"
+
+[node name="container" type="HBoxContainer" parent="panel/container"]
+margin_top = 37.0
+margin_right = 1080.0
+margin_bottom = 520.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="player_list" type="ItemList" parent="panel/container/container"]
+margin_right = 534.0
+margin_bottom = 483.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+allow_rmb_select = true
+
+[node name="control_container" type="VBoxContainer" parent="panel/container/container"]
+margin_left = 546.0
+margin_right = 1080.0
+margin_bottom = 483.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="info_container" type="VBoxContainer" parent="panel/container/container/control_container"]
+margin_right = 534.0
+margin_bottom = 342.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="info_label" type="RichTextLabel" parent="panel/container/container/control_container/info_container"]
+margin_right = 534.0
+margin_bottom = 342.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+
+[node name="button_container" type="VBoxContainer" parent="panel/container/container/control_container"]
+margin_top = 346.0
+margin_right = 534.0
+margin_bottom = 436.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="song_button" type="Button" parent="panel/container/container/control_container/button_container"]
+margin_right = 534.0
+margin_bottom = 43.0
+shortcut = SubResource( 2 )
+text = "pick a song"
+
+[node name="char_button" type="Button" parent="panel/container/container/control_container/button_container"]
+margin_top = 47.0
+margin_right = 534.0
+margin_bottom = 90.0
+shortcut = SubResource( 5 )
+text = "pick a character"
+
+[node name="host_button_container" type="VBoxContainer" parent="panel/container/container/control_container"]
+margin_top = 440.0
+margin_right = 534.0
+margin_bottom = 483.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="start_button" type="Button" parent="panel/container/container/control_container/host_button_container"]
+margin_right = 534.0
+margin_bottom = 43.0
+shortcut = SubResource( 7 )
+text = "start game"
+
+[connection signal="item_rmb_selected" from="panel/container/container/player_list" to="." method="_on_player_list_item_rmb_selected"]
+[connection signal="pressed" from="panel/container/container/control_container/button_container/song_button" to="." method="_on_song_button_pressed"]
+[connection signal="pressed" from="panel/container/container/control_container/button_container/char_button" to="." method="_on_char_button_pressed"]
+[connection signal="pressed" from="panel/container/container/control_container/host_button_container/start_button" to="." method="_on_start_button_pressed"]

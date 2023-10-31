@@ -1,0 +1,84 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Nodes/alphabet.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/States/Options/options_menu.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/States/Options/options_choice_menu.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Other/Font/font_menu.tres" type="DynamicFont" id=4]
+
+[node name="OptionsMenu" type="Control"]
+margin_right = 1280.0
+margin_bottom = 720.0
+script = ExtResource( 2 )
+
+[node name="ChoiceMenu" type="Control" parent="."]
+margin_left = 33.0
+margin_top = 314.0
+margin_right = 73.0
+margin_bottom = 354.0
+script = ExtResource( 3 )
+spacing = Vector2( 0, 90 )
+
+[node name="TopBarBG" type="ColorRect" parent="."]
+margin_right = 1280.0
+margin_bottom = 114.0
+color = Color( 0, 0, 0, 0.403922 )
+
+[node name="BotBarBG" type="ColorRect" parent="."]
+margin_top = 608.0
+margin_right = 1280.0
+margin_bottom = 722.0
+color = Color( 0, 0, 0, 0.403922 )
+
+[node name="TopBar" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="PageRightText" type="Control" parent="TopBar"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = 325.0
+margin_top = 17.0
+margin_right = 1600.0
+margin_bottom = 114.0
+rect_min_size = Vector2( 235.2, 88 )
+rect_scale = Vector2( 0.7, 0.7 )
+script = ExtResource( 1 )
+text = "page"
+align = 2
+
+[node name="PageLeftText" type="Control" parent="TopBar"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -16.0
+margin_top = 17.0
+margin_right = 1259.0
+margin_bottom = 114.0
+rect_min_size = Vector2( 235.2, 88 )
+rect_scale = Vector2( 0.7, 0.7 )
+script = ExtResource( 1 )
+text = "page"
+
+[node name="PageText" type="Control" parent="TopBar"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -35.0
+margin_top = 9.0
+margin_right = 1240.0
+margin_bottom = 106.0
+rect_min_size = Vector2( 235.2, 88 )
+script = ExtResource( 1 )
+text = "page"
+align = 1
+
+[node name="BotBar" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="BotLabel" type="Label" parent="BotBar"]
+margin_top = 608.0
+margin_right = 1280.0
+margin_bottom = 720.0
+custom_fonts/font = ExtResource( 4 )
+text = "awesome"
+align = 1
+valign = 1

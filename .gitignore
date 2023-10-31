@@ -1,0 +1,7 @@
+.export/
+.import/
+.mods/
+.mono/
+.vscode/
+
+env.ini

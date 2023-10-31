@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Inst.ogg-b3a28d8b195d1c56af54d7068446a6a1.oggstr"
+
+[deps]
+
+source_file="res://Assets/Songs/Friday Night Funkin'/songs/roses/Inst.ogg"
+dest_files=[ "res://.import/Inst.ogg-b3a28d8b195d1c56af54d7068446a6a1.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
