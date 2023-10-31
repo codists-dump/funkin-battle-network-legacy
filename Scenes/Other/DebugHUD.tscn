@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Other/debug_hud.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Other/Font/font_game.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Assets/Other/Font/font_debug.tres" type="DynamicFont" id=2]
 
 [node name="DebugHUD" type="CanvasLayer"]
 pause_mode = 2
@@ -9,7 +9,11 @@ layer = 20
 script = ExtResource( 1 )
 
 [node name="Label" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_left = 4.0
+margin_right = 100.0
+margin_bottom = 41.0
+custom_constants/shadow_offset_x = 0
+custom_constants/line_spacing = -5
 custom_fonts/font = ExtResource( 2 )
-text = "FPS : 120"
+text = "FPS : 120
+debug mode"

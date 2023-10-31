@@ -6,6 +6,8 @@ const MAIN_MENU_SCENE = preload("res://Scenes/States/MainMenuState.tscn")
 
 const DEBUG_HUD_SCENE = preload("res://Scenes/Other/DebugHUD.tscn")
 
+const MESSAGE_HUD_SCENE = preload("res://Scenes/Other/MessageHUD.tscn")
+
 const VOLUME_HUD_SCENE = preload("res://Scenes/Other/VolumeHUD.tscn")
 
 enum PlayStateCreateError {
@@ -13,6 +15,7 @@ enum PlayStateCreateError {
 }
 
 onready var debug_scene = DEBUG_HUD_SCENE.instance()
+onready var message_scene = MESSAGE_HUD_SCENE.instance()
 onready var volume_scene = VOLUME_HUD_SCENE.instance()
 
 # The scene to change to after a transition.
@@ -24,6 +27,8 @@ var cur_volume = 5
 func _ready():
 	get_tree().root.call_deferred("add_child", debug_scene)
 	get_tree().root.call_deferred("add_child", volume_scene)
+	
+	add_child(message_scene)
 
 	change_volume(0)
 	
@@ -172,3 +177,6 @@ func load_env():
 	if repo_token != null:
 		Resources.online_repo_token = repo_token
 		print("[env.ini] Loaded GITHUB_TOKEN.")
+
+func message(text):
+	message_scene.add_message(text)
