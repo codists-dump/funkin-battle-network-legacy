@@ -25,5 +25,3 @@ Do not *(without permission)*:
 - Take code from this project and use it in yours.
 - Make "revival" projects out of this. Just contribute to this one, please.
 - Release a compiled build on my behalf. (You can share a build with friends but do not go publishing this on Gamebanana or Gamejolt or something.)
-
-<sub>I am too lazy to setup a license right now and yeah it could bite me in the ass in the future but whatever.</sub>
