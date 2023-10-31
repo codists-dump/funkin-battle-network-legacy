@@ -1,5 +1,5 @@
 # funkin-battle-network-legacy
-An old **Friday Night Funkin' online multiplayer** version of the rewritten FNF Godot engine but not the one I rewrote for Funkin' Battle Network and also not the other one I rewrote for Funkin' Battle Network. This was the first*.<br>
+An old **Friday Night Funkin' online multiplayer** version of my [rewritten FNF Godot engine](https://imcodist.xyz/projects/fangames/fnf-godot/) but not the one I rewrote for Funkin' Battle Network and also not the other one I rewrote for Funkin' Battle Network. This was the first*.<br>
 <sub>\* actually technically the second but the first one was more of a prototype</sub>
 
 The code here is a mess, but its a charming mess! :)<br>
