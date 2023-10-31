@@ -5,7 +5,7 @@ var stages = {
 	"stage": "res://Scenes/Stages/Stage.tscn"
 }
 
-var online_mod_address = "http://192.168.193.229:5000" # deprecated
+var online_mod_address = "" # deprecated
 var online_repo_address = "ImCod2st/fnf-godot-online-mods"
 var online_repo_token = ""
 
