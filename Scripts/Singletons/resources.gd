@@ -6,7 +6,7 @@ var stages = {
 }
 
 var online_mod_address = "" # deprecated
-var online_repo_address = "ImCod2st/fnf-godot-online-mods"
+var online_repo_address = "ImCod2st/fbn-mods"
 var online_repo_token = ""
 
 var online_freeplay_data = {}
