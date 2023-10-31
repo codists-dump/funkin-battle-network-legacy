@@ -15,6 +15,8 @@ func setup_character():
 	
 	.setup_character()
 	
+	load_json_post()
+	
 	print("Loaded psych character " + character_file + ".")
 
 func load_json():
@@ -60,6 +62,11 @@ func load_json():
 	var _scale = json_data.get("scale", 1)
 	scale = Vector2(_scale, _scale)
 
+func load_json_post():
+	if json_data.get("no_antialiasing", false):
+		sprite.texture.flags = Texture.FLAG_MIPMAPS
+		icon_sheet.flags = Texture.FLAG_MIPMAPS
+
 func load_icon():
 	icon_sheet = Mods.mod_image(character_dir + "/icon-" + character_file + ".png")
 
@@ -67,7 +74,6 @@ func load_other():
 	var _file = File.new()
 	
 	var _taunt_path = character_dir + "/emote.ogg"
-	print(_taunt_path)
 	if _file.file_exists(_taunt_path):
 		taunt_sound = Mods.mod_ogg(_taunt_path)
 
