@@ -42,6 +42,14 @@ onready var camera = stage.camera
 var custom_notes : Dictionary
 
 
+# DONT TOUCH THESE
+# dont
+
+
+# A reference to the nodes that are features.
+var _features : Dictionary = {}
+
+
 # OK SHIT STARTS HERE FR
 
 
@@ -50,6 +58,8 @@ func _ready():
 	var _step_connect = Conductor.connect("step_changed", self, "_on_step")
 	var _beat_connect = Conductor.connect("beat_changed", self, "_on_beat")
 	var _playing_connect = Conductor.connect("song_playing", self, "_song_playing")
+	
+	add_to_group("_scripts")
 	
 	play_state.connect("song_started", self, "_song_started")
 	play_state.connect("song_ended", self, "_song_ended")
@@ -70,6 +80,10 @@ func _ready():
 # Use this function to return any resources thay may
 # need to be downloaded online for this script to work.
 func _get_resources():
+	return []
+
+# something something replace this
+func _get_features():
 	return []
 
 
@@ -215,6 +229,22 @@ func new_note_type(_type, _texture, _sustain_texture, _do_hit=true, _do_miss=tru
 # Example: if your playing as the enemy and you get the player character it'll return the enemy.
 func get_relative_character(_character):
 	play_state.get_relative_character(_character)
+
+
+# Returns the node of a feature downloaded by the script.
+func get_feature(feature_name):
+	if feature_name in _features:
+		return _features[feature_name]
+	
+	return null
+
+func run_feature(feature_name, method, args = []):
+	var feature = get_feature(feature_name)
+	if feature != null:
+		if feature.has_method(method):
+			return feature.callv(method, args)
+	
+	return null
 
 
 # uhhh h hahh ha hs

@@ -3,7 +3,7 @@ extends Node
 # Turns on sounds when a note is hit.
 var hit_sounds : bool = false
 # How loud said hitsounds should be.
-var hit_sound_volume : float = -5
+var hit_sound_volume : float = -15
 # If the notes will move downward instead of up.
 var downscroll : bool = false
 # Moves the strum line to the center of the screen.

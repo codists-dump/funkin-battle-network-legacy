@@ -202,8 +202,7 @@ func _ready():
 	
 	load_online_resources()
 	if not loading_online:
-		emit_signal("loaded")
-		online_ready()
+		finished_loading()
 	
 	var _connect_beat = Conductor.connect("beat_changed", self, "_on_beat")
 
@@ -389,10 +388,19 @@ func load_online_resources():
 	if is_song_online:
 		loading_online = true
 		yield(load_online_song(), "completed")
-		
-		if len(script_resources) > 0:
-			# Load anything that might be needed by the song.
-			yield(load_online_script_resources(), "completed")
+	
+	# Load script resources.
+	
+	# Remove any that exist locally.
+	for resource in script_resources:
+		var _file = File.new()
+		if _file.file_exists(Mods.mods_folder + resource):
+			script_resources.erase(resource)
+	
+	if len(script_resources) > 0:
+		# Load anything that might be needed by the song.
+		loading_online = true
+		yield(load_online_script_resources(), "completed")
 	
 	# Load custom characters.
 	var _player_info = Multiplayer.player_info.keys()
@@ -413,8 +421,7 @@ func load_online_resources():
 	hud.show_waiting()
 	
 	if loading_online:
-		emit_signal("loaded")
-		online_ready()
+		finished_loading()
 
 func load_online_song():
 	var _downloading_message = "Downloading %s..." % song_name
@@ -692,7 +699,7 @@ func load_online_character(_character, _id):
 func load_online_script_resources():
 	var _mod_path = Resources.get_github_raw_content_path(
 		song_repo,
-		"mods/%s/" % song_mod
+		""
 	)
 	
 	var _downloading_message = "Downloading script resources..."
@@ -708,7 +715,7 @@ func load_online_script_resources():
 		print("Loading " + _file_path + "...")
 		hud.show_waiting(_downloading_message+"\nDownloading %s... (%s)" % [_file_name, len(script_resources)])
 		
-		var _save_path = Resources.temp_online_folder + "mods/%s/" % song_mod + _file_name
+		var _save_path = Resources.temp_online_folder + _file_name
 			
 		load_online_file(_file_path, _save_path, "online_loaded_script_files")
 		_downloaded_files.append(_save_path)
@@ -1076,28 +1083,61 @@ func load_scripts():
 		if "character_dir" in _character:
 			load_script(_character.character_dir + "script.gd", {"character": _character})
 	
-func load_script(_dir, _data = {}):
+func load_script(_dir, _data = {}, allow_resources = true):
 	var file = Mods.mod_script(_dir)
 	
 	if (file is GDScript):
 		var node = file.new()
 		
-		node.script_path = _dir
-		
-		node.play_state = self
-		node.character = _data.get("character")
-		
+		if (node is FNFScript):
+			node.script_path = _dir
+			
+			node.play_state = self
+			node.character = _data.get("character")
+			
 		add_child(node)
 		
 		print("Loaded script %s." % _dir)
 		
-		if is_song_online:
-			script_resources.append_array(node._get_resources())
-			print(node._get_resources())
+		if allow_resources:
+			for resource in node._get_resources():
+				var _path = "mods/%s/" % song_mod + resource
+				script_resources.append(_path.simplify_path())
+			for feature in node._get_features():
+				var _path = "features/" + feature + ".gd"
+				script_resources.append(_path.simplify_path())
 		
 		return node
 	
 	return null
+
+func load_script_features():
+	var features = []
+	var feature_nodes = {}
+	
+	for script_node in get_tree().get_nodes_in_group("_scripts"):
+		features.append_array(script_node._get_features())
+	
+	for feature in features:
+		var feature_node
+		var file_path = "features/" + feature + ".gd"
+		
+		var file = File.new()
+		
+		var prefixes = [Mods.mods_folder, Resources.temp_online_folder]
+		for prefix in prefixes:
+			if file.file_exists(prefix + file_path):
+				feature_node = load_script(prefix + file_path, {}, false)
+				break
+		
+		if feature_node:
+			feature_nodes[feature] = feature_node
+	
+	for script_node in get_tree().get_nodes_in_group("_scripts"):
+		var script_features = script_node._get_features()
+		for feature in feature_nodes:
+			if feature in script_features:
+				script_node._features[feature] = feature_nodes[feature]
 		
 func online_ready():
 	if !get_tree().is_network_server():
@@ -1257,6 +1297,12 @@ func update_strum_offset(_offset):
 	if _difference > 100:
 		print("Updated opponent's offset.\nNew offset: %sms. Difference: %s" % [_offset, _difference])
 		_strum.offset = _offset
+
+func finished_loading():
+	load_script_features()
+	
+	emit_signal("loaded")
+	online_ready()
 		
 func _player_disconnected(_id):
 	playing_players.erase(_id)
