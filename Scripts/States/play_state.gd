@@ -373,6 +373,7 @@ func load_song(_directory : String, _song_name : String, _song_dif : int) -> voi
 func load_online_resources():
 	# Remove temp folder.
 	var _dir_instance = Directory.new()
+	var _file_instance = File.new()
 	
 	# Delete all temp files.
 	var _temp_dir = Resources.iterate_in_directory_all(Resources.temp_online_folder)
@@ -406,9 +407,15 @@ func load_online_resources():
 	
 	# Load script resources.
 	# Remove any that exist locally.
-	for resource in script_resources:
-		if _dir_instance.file_exists(Mods.mods_folder + resource):
-			script_resources.erase(resource)
+	if not is_song_online:
+		print("Removing anything from download queue that exists locally.")
+		
+		var download_globally = []
+		for resource in script_resources:
+			if not _file_instance.file_exists(Mods.mods_folder + resource):
+				download_globally.append(resource)
+		
+		script_resources = download_globally
 	
 	if len(script_resources) > 0:
 		# Load anything that might be needed by the song.
@@ -454,8 +461,6 @@ func load_online_song():
 		
 		print("Loading online chart %s..." % _chart_path)
 		hud.show_waiting(_downloading_message+"\nGetting chart (1/3)")
-		
-		print(_chart_path)
 		
 		var _error_chart = _http.request(_chart_path)
 		if _error_chart != OK:
@@ -691,9 +696,16 @@ func load_online_character(_character, _id):
 	
 	_old_char_node.queue_free()
 	
-	for _file in _downloaded_files:
-		if _file.ends_with(".gd"):
-			load_script(_file, {"character": _char_node})
+	var script_exists = false
+	for _script in get_tree().get_nodes_in_group("_scripts"):
+		if _script.character == _old_char_node:
+			_script.character = _char_node
+			script_exists = true
+	
+	if not script_exists:
+		for _file in _downloaded_files:
+			if _file.ends_with(".gd"):
+				load_script(_file, {"character": _char_node})
 
 func load_online_script_resources():
 	var _mod_path = Resources.get_github_raw_content_path(
