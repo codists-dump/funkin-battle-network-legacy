@@ -63,6 +63,9 @@ func load_json():
 	scale = Vector2(_scale, _scale)
 
 func load_json_post():
+	if json_data == null:
+		return
+	
 	if json_data.get("no_antialiasing", false):
 		sprite.texture.flags = Texture.FLAG_MIPMAPS
 		icon_sheet.flags = Texture.FLAG_MIPMAPS

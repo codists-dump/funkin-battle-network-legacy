@@ -34,7 +34,9 @@ func _unhandled_input(event):
 				var _pizza = PIZZA_BUTTON.instance()
 				_pizza.position.y = -1000
 				add_child(_pizza)
-			if event.scancode == KEY_0:
+			if event.scancode == KEY_1:
+				_on_GameButton_pressed()
+			if event.scancode == KEY_2:
 				_on_PlayerButton_pressed()
 
 func camera_move(_delta):

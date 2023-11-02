@@ -37,6 +37,13 @@ var waiting
 
 onready var health_bar_pos = $HealthBar.rect_position
 
+onready var middlescroll := Settings.middlescroll
+onready var downscroll := Settings.downscroll
+
+onready var showcase_mode := Settings.showcase_mode
+onready var show_time_bar := Settings.time_bar
+
+
 # Godot ready function.
 func _ready():
 	var _on_beat = Conductor.connect("beat_changed", self, "on_beat")
@@ -275,7 +282,23 @@ func update_settings():
 		_self_strum = _enemy_strum_node
 		_opponent_strum = _player_strum_node
 	
-	if Settings.downscroll:
+	# default settings
+	_player_strum_node.position = Vector2(146, -255)
+	_enemy_strum_node.position = Vector2(-494, -255)
+	
+	_player_strum_node.note_scale = 1
+	_enemy_strum_node.note_scale = 1
+	
+	$HealthBar.rect_position = Vector2(-301, 276)
+	$InfoContainer.rect_position = Vector2(-640, 306)
+	$TimeBar.rect_position = Vector2(-123.5, -336)
+	
+	$HealthBar.visible = true
+	$InfoContainer.visible = true
+	$TimeBar.visible = true
+	
+	# change based on settings
+	if downscroll:
 		_player_strum_node.position.y = -_player_strum_node.position.y
 		_enemy_strum_node.position.y = -_enemy_strum_node.position.y
 		
@@ -286,19 +309,19 @@ func update_settings():
 		$InfoContainer.rect_position.y = -315
 		$TimeBar.rect_position.y = 320
 		
-	if Settings.middlescroll:
+	if middlescroll:
 		_self_strum.position.x = -160
-		
 		_opponent_strum.visible = false
-		
-	if Settings.showcase_mode:
+	
+	if showcase_mode:
 		$HealthBar.visible = false
 		$InfoContainer.visible = false
 		$TimeBar.visible = false
-		
-	if !Settings.time_bar:
+	
+	if not show_time_bar:
 		$TimeBar.visible = false
 	
+	# update vars
 	health_bar_pos = $HealthBar.rect_position
 
 

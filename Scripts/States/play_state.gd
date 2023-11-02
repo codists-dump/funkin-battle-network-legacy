@@ -177,6 +177,8 @@ var script_resources = []
 
 onready var mod_directory = Resources.get_resource_path("res://Assets/Songs/", Mods.songs_folder, song_mod)
 
+onready var hud_ratings = Settings.hud_ratings
+
 # Godot ready function.
 func _ready():
 	name = "PlayState"
@@ -997,7 +999,7 @@ func get_rating(_hit_timings : Dictionary, _timing : float) -> String:
 	
 func create_rating(_rating, _combo, _left):
 	var _rating_parent = stage
-	if Settings.hud_ratings:
+	if hud_ratings:
 		_rating_parent = hud
 	
 	if rating_scene == null || Settings.showcase_mode:
@@ -1012,8 +1014,18 @@ func create_rating(_rating, _combo, _left):
 		if _rating_parent == stage:
 			_rating_object.position = _rating_parent.gf_position + Vector2(160, -400)
 		
-		if _left:
-			if !Settings.hud_ratings:
+		if hud_ratings:
+			if not hud.middlescroll:
+				var strum = player_strum
+				if _left:
+					strum = enemy_strum
+				
+				_rating_object.position.x = strum.position.x + 160
+			else:
+				if not is_enemy and _left or is_enemy and not _left:
+					_rating_object.modulate.a = 0.25
+		else:
+			if _left:
 				_rating_object.position.x -= 260
 		
 		if _rating_parent == hud:

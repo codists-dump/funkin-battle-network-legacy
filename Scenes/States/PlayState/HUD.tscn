@@ -56,9 +56,6 @@ texture_progress = ExtResource( 3 )
 fill_mode = 1
 tint_under = Color( 1, 0, 0, 1 )
 tint_progress = Color( 0.521569, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Icons" type="Node2D" parent="HealthBar"]
 position = Vector2( 304, 8 )
