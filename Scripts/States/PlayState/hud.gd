@@ -35,6 +35,8 @@ var icon_tween = Tween.new()
 
 var waiting
 
+onready var health_bar_pos = $HealthBar.rect_position
+
 # Godot ready function.
 func _ready():
 	var _on_beat = Conductor.connect("beat_changed", self, "on_beat")
@@ -92,7 +94,7 @@ func _process(_delta):
 	else:
 		shake_offset = Vector2(0, 0)
 	
-	$HealthBar.rect_position = Vector2(-301, 276) + shake_offset
+	$HealthBar.rect_position = health_bar_pos + shake_offset
 	
 	# lerp hud
 	if do_hud_bop:
@@ -280,8 +282,9 @@ func update_settings():
 		_player_strum_node.note_scale = -1
 		_enemy_strum_node.note_scale = -1
 		
-		$HealthBar.rect_position.y = -281
-		$InfoBar.rect_position.y = -321
+		$HealthBar.rect_position.y = -276
+		$InfoContainer.rect_position.y = -315
+		$TimeBar.rect_position.y = 320
 		
 	if Settings.middlescroll:
 		_self_strum.position.x = -160
@@ -290,11 +293,13 @@ func update_settings():
 		
 	if Settings.showcase_mode:
 		$HealthBar.visible = false
-		$InfoBar.visible = false
+		$InfoContainer.visible = false
 		$TimeBar.visible = false
 		
 	if !Settings.time_bar:
 		$TimeBar.visible = false
+	
+	health_bar_pos = $HealthBar.rect_position
 
 
 func shake_bar():
