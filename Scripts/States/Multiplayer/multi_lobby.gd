@@ -253,6 +253,20 @@ func has_song(_song_data):
 		return 0
 	
 func send_start_game():
+	if Input.is_key_pressed(KEY_SHIFT) and Input.is_key_pressed(KEY_CONTROL):
+		if OS.is_debug_build():
+			var DEBUG_MOD = "Ourple Guy"
+			var DEBUG_SONG = "bite"
+			var DEBUG_DIFF = Chart.Difficulties.HARD
+			
+			Multiplayer.my_info["song"] = {
+				"diff": DEBUG_DIFF,
+				"is_online": false, 
+				"mod": DEBUG_MOD, 
+				"online_repo": Resources.online_repo_address, 
+				"song": DEBUG_SONG
+			}
+		
 	var _song_list = get_song_list()
 	
 	if _song_list.size() == 0:

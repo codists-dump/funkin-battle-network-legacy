@@ -195,7 +195,7 @@ func get_online_mod_freeplay_data(_mod, _mods_path):
 
 	var _songs_result = yield(_http, "request_completed")
 	if _songs_result[1] != 200:
-		print(_mod_name + " ERROR / " + _songs_result[1])
+		print(str(_mod_name) + " ERROR / " + str(_songs_result[1]))
 	
 	_http.queue_free()
 

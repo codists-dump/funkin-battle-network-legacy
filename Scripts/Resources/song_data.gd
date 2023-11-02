@@ -21,6 +21,9 @@ var bf : String
 var enemy : String
 var gf : String
 
+# Srage
+var stage : String
+
 # The songs scroll speed.
 var scroll_speed : float
 
@@ -64,6 +67,7 @@ func load_chart_data(_data : Dictionary, _simple = false) -> int:
 	bf = _song_data.get("player1")
 	enemy = _song_data.get("player2")
 	# gf
+	stage = _song_data.get("stage", "")
 	
 	var _speed = _song_data.get("speed")
 	if Settings.custom_scroll_speed:

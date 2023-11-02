@@ -389,19 +389,6 @@ func load_online_resources():
 		loading_online = true
 		yield(load_online_song(), "completed")
 	
-	# Load script resources.
-	
-	# Remove any that exist locally.
-	for resource in script_resources:
-		var _file = File.new()
-		if _file.file_exists(Mods.mods_folder + resource):
-			script_resources.erase(resource)
-	
-	if len(script_resources) > 0:
-		# Load anything that might be needed by the song.
-		loading_online = true
-		yield(load_online_script_resources(), "completed")
-	
 	# Load custom characters.
 	var _player_info = Multiplayer.player_info.keys()
 	_player_info.push_front(get_tree().get_network_unique_id())
@@ -416,6 +403,17 @@ func load_online_resources():
 		if _character.get("is_online", false):
 			loading_online = true
 			yield(load_online_character(_character, _player), "completed")
+	
+	# Load script resources.
+	# Remove any that exist locally.
+	for resource in script_resources:
+		if _dir_instance.file_exists(Mods.mods_folder + resource):
+			script_resources.erase(resource)
+	
+	if len(script_resources) > 0:
+		# Load anything that might be needed by the song.
+		loading_online = true
+		yield(load_online_script_resources(), "completed")
 	
 	# Ready up after finishing.
 	hud.show_waiting()
@@ -511,7 +509,8 @@ func load_online_song():
 	
 	var _queued_files = [
 		"script.gd", 
-		"songs/%s/script.gd" % song_name
+		"songs/%s/script.gd" % song_name,
+		"stages/%s.gd" % cur_chart.stage
 	]
 	var _downloaded_files = []
 	while len(_queued_files) > 0:
@@ -1077,6 +1076,8 @@ func load_scripts():
 	if mod_directory != null:
 		load_script(mod_directory + "script.gd")
 		load_script(song_directory + "script.gd")
+		
+		load_script(mod_directory + "stages/" + cur_chart.stage + ".gd")
 	
 	var _characters = [stage.player_character, stage.enemy_character, stage.gf_character]
 	for _character in _characters:
@@ -1094,20 +1095,22 @@ func load_script(_dir, _data = {}, allow_resources = true):
 			
 			node.play_state = self
 			node.character = _data.get("character")
+				
+			add_child(node)
 			
-		add_child(node)
-		
-		print("Loaded script %s." % _dir)
-		
-		if allow_resources:
-			for resource in node._get_resources():
-				var _path = "mods/%s/" % song_mod + resource
-				script_resources.append(_path.simplify_path())
-			for feature in node._get_features():
-				var _path = "features/" + feature + ".gd"
-				script_resources.append(_path.simplify_path())
-		
-		return node
+			print("Loaded script %s." % _dir)
+			
+			if allow_resources:
+				for resource in node._get_resources():
+					var _path = "mods/%s/" % song_mod + resource
+					script_resources.append(_path.simplify_path())
+				for feature in node._get_features():
+					var _path = "features/" + feature + ".gd"
+					script_resources.append(_path.simplify_path())
+			
+			return node
+		else:
+			print("Script %s is not type FNFScript and cannot be loaded." % _dir)
 	
 	return null
 

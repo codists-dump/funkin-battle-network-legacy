@@ -21,6 +21,7 @@ var countdown_sounds : Array = [
 var play_state : PlayState
 
 var bop_mod = 4
+var do_hud_bop = true
 
 var hud_bop_scale = 0.02
 
@@ -94,7 +95,8 @@ func _process(_delta):
 	$HealthBar.rect_position = Vector2(-301, 276) + shake_offset
 	
 	# lerp hud
-	self.scale = lerp(self.scale, Vector2(1, 1), 5 * _delta)
+	if do_hud_bop:
+		self.scale = lerp(self.scale, Vector2(1, 1), 5 * _delta)
 	
 #	$LabelRating.text = ""
 #	for _rating in play_state.hit_ratings.keys():
@@ -145,33 +147,38 @@ func on_beat(_beat : int) -> void:
 	if _beat <= 0:
 		match abs(_beat % 5):
 			4.0:
-				$CountdownStream.stream = countdown_sounds[0]
-				$CountdownStream.play()
+				if len(countdown_sounds) >= 1:
+					$CountdownStream.stream = countdown_sounds[0]
+					$CountdownStream.play()
 			3.0:
 				$CountdownSprite.visible = true
 				
-				$CountdownStream.stream = countdown_sounds[1]
-				$CountdownStream.play()
+				if len(countdown_sounds) >= 2:
+					$CountdownStream.stream = countdown_sounds[1]
+					$CountdownStream.play()
 				
 				$CountdownSprite.frame = 0
 				$CountdownSprite.modulate.a = _alpha
 			2.0:
-				$CountdownStream.stream = countdown_sounds[2]
-				$CountdownStream.play()
+				if len(countdown_sounds) >= 3:
+					$CountdownStream.stream = countdown_sounds[2]
+					$CountdownStream.play()
 				
 				$CountdownSprite.frame = 1
 				$CountdownSprite.modulate.a = _alpha
 			1.0:
-				$CountdownStream.stream = countdown_sounds[3]
-				$CountdownStream.play()
+				if len(countdown_sounds) >= 4:
+					$CountdownStream.stream = countdown_sounds[3]
+					$CountdownStream.play()
 				
 				$CountdownSprite.frame = 2
 				$CountdownSprite.modulate.a = _alpha
 			0.0:
 				$CountdownSprite.visible = false
 	
-	if _beat % bop_mod == 0:
-		self.scale = Vector2(1+hud_bop_scale, 1+hud_bop_scale)
+	if do_hud_bop:
+		if _beat % bop_mod == 0:
+			self.scale = Vector2(1+hud_bop_scale, 1+hud_bop_scale)
 
 # Update the info bar.
 func update_info_bar() -> void:

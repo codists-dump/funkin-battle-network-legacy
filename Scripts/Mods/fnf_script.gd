@@ -70,10 +70,13 @@ func _ready():
 	play_state.connect("note_missed", self, "_note_missed")
 	play_state.connect("note_missed_any", self, "_note_missed_any")
 	
-	play_state.connect("loaded", self, "_loaded")
+	play_state.connect("loaded", self, "_loaded_class")
 
 	# for helpful funmcitons
 	play_state.connect("note_created", self, "_helper_note_created")
+
+func _loaded_class():
+	_loaded()
 
 
 # CONFIG
@@ -172,6 +175,16 @@ func tween(_object, _property, _initial_value, _final_value, _duration, _trans_t
 	add_child(_tween)
 	_tween.start()
 
+# Creates a timer that gets deleted later awesome.
+func timer(_seconds, _method, _binds = []):
+	var _timer: Timer = Timer.new()
+	add_child(_timer)
+
+	_timer.start(_seconds)
+
+	var _connecter = _timer.connect("timeout", self, _method, _binds)
+	var _connecter2 = _timer.connect("timeout", self, "_helper_timer_completed", [_timer])
+
 
 # Creates a Sprite from a image.
 func new_sprite(_path):
@@ -238,6 +251,7 @@ func get_feature(feature_name):
 	
 	return null
 
+# Ditto but runs a feature after, making scripts more concise.
 func run_feature(feature_name, method, args = []):
 	var feature = get_feature(feature_name)
 	if feature != null:
@@ -269,3 +283,7 @@ func _helper_note_created(_note):
 			_note.bot_ignore = _note_data.get("bot_ignore", false)
 
 			_note.hit_timings = _note_data.get("hit_timings", _note.hit_timings)
+
+# gets rid of a timer after its use
+func _helper_timer_completed(timer):
+	timer.queue_free()
